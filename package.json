@@ -5,7 +5,8 @@
   "main": "lib/migrate",
   "scripts": {
     "lint": "eslint --fix src/**/*.{ts,tsx}",
-    "precommit": "lint-staged && tsc"
+    "precommit": "lint-staged && tsc",
+    "prepublish": "tsc"
   },
   "keywords": [
     "rethinkdb",

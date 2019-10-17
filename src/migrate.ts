@@ -180,7 +180,6 @@ export async function down(params: Params) {
     logInfo('No new migrations')
     return
   }
-  console.log('RB', completedMigrations)
   const migrationsToRollBack = all
     ? completedMigrations.reverse()
     : [completedMigrations[completedMigrations.length - 1]]

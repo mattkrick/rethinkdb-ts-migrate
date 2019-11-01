@@ -60,7 +60,15 @@ async function connectToDb(config: Config) {
       .table(MIGRATION_TABLE_NAME)
       .indexCreate('timestamp')
       .run()
+    await r
+      .table(MIGRATION_TABLE_NAME)
+      .indexWait()
+      .run()
   }
+  await r
+    .db(config.db)
+    .wait({waitFor: 'ready_for_writes'})
+    .run()
 }
 
 /*

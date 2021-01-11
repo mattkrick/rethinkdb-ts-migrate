@@ -153,6 +153,7 @@ export async function up(params: Params) {
   const migrations = await getMigrationsExcept(latest, rootDir, numToApply)
   if (migrations.length < 1) {
     logInfo('No new migrations')
+    await r.getPoolMaster()?.drain()
     return
   }
   for (let i = 0; i < migrations.length; i++) {
@@ -163,6 +164,7 @@ export async function up(params: Params) {
       await migration.code.up(r)
     } catch (e) {
       logError(`Migration failed: ${name}`, e)
+      await r.getPoolMaster()?.drain()
       return
     }
     await r
@@ -188,6 +190,7 @@ export async function down(params: Params) {
     .run()
   if (completedMigrations.length === 0) {
     logInfo('No new migrations')
+    await r.getPoolMaster()?.drain()
     return
   }
   const migrationsToRollBack = all
@@ -202,6 +205,7 @@ export async function down(params: Params) {
       await migration.code.down(r)
     } catch (e) {
       logError(`Migration failed: ${name}`, e)
+      await r.getPoolMaster()?.drain()
       return
     }
     await r

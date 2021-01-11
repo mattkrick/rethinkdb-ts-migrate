@@ -114,7 +114,7 @@ async function getMigrationsExcept(
   Takes a list of migration file paths and requires them
  */
 function requireMigrations(migrations: Migration[], root: string) {
-  return migrations.map(function(migration) {
+  return migrations.map(function (migration) {
     const filename = migration.timestamp + '-' + migration.name
     const filepath = path.join(root, 'migrations', filename)
     return {
@@ -171,6 +171,8 @@ export async function up(params: Params) {
       .run()
   }
   logInfo('Migration Successful')
+  await r.getPoolMaster()?.drain()
+
 }
 
 /*
@@ -209,6 +211,7 @@ export async function down(params: Params) {
       .run()
   }
   logInfo('Migration successful')
+  await r.getPoolMaster()?.drain()
 }
 
 function logInfo(...args: any[]) {

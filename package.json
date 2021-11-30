@@ -25,9 +25,9 @@
   "bin": "./bin/migrate-rethinkdb",
   "dependencies": {
     "chalk": "^1.1.3",
-    "meow": "^3.7.0",
+    "meow": "^10.1.2",
     "moment": "^2.13.0",
-    "nconf": "^0.8.4",
+    "nconf": "^0.11.3",
     "rethinkdb-ts": "^2.4.5",
     "sucrase": "^3.10.1",
     "tslib": "^1.10.0"

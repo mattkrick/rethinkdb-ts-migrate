@@ -56,19 +56,10 @@ async function connectToDb(config: Config) {
   const tables = await r.tableList().run()
   if (!tables.includes(MIGRATION_TABLE_NAME)) {
     await r.tableCreate(MIGRATION_TABLE_NAME).run()
-    await r
-      .table(MIGRATION_TABLE_NAME)
-      .indexCreate('timestamp')
-      .run()
-    await r
-      .table(MIGRATION_TABLE_NAME)
-      .indexWait()
-      .run()
+    await r.table(MIGRATION_TABLE_NAME).indexCreate('timestamp').run()
+    await r.table(MIGRATION_TABLE_NAME).indexWait().run()
   }
-  await r
-    .db(config.db)
-    .wait({waitFor: 'ready_for_writes'})
-    .run()
+  await r.db(config.db).wait({waitFor: 'ready_for_writes'}).run()
 }
 
 /*
@@ -140,7 +131,7 @@ interface Migration {
   timestamp: string
 }
 
-export async function up(params: Params) {
+export async function up(params: Params): Promise<void> {
   const {all, root} = params
   const rootDir = root || process.cwd()
   await connectToDb(await getConfig(rootDir))
@@ -167,20 +158,16 @@ export async function up(params: Params) {
       await r.getPoolMaster()?.drain()
       return
     }
-    await r
-      .table(MIGRATION_TABLE_NAME)
-      .insert({name, timestamp})
-      .run()
+    await r.table(MIGRATION_TABLE_NAME).insert({name, timestamp}).run()
   }
   logInfo('Migration Successful')
   await r.getPoolMaster()?.drain()
-
 }
 
 /*
   Rollback one or all migrations
  */
-export async function down(params: Params) {
+export async function down(params: Params): Promise<void> {
   const {all, root} = params
   const rootDir = root || process.cwd()
   await connectToDb(await getConfig(rootDir))
@@ -208,11 +195,7 @@ export async function down(params: Params) {
       await r.getPoolMaster()?.drain()
       return
     }
-    await r
-      .table(MIGRATION_TABLE_NAME)
-      .get(migration.id)
-      .delete()
-      .run()
+    await r.table(MIGRATION_TABLE_NAME).get(migration.id).delete().run()
   }
   logInfo('Migration successful')
   await r.getPoolMaster()?.drain()
@@ -233,7 +216,7 @@ function logError(txt: string, error: Error) {
   }
 }
 
-export async function create(name: string, root: string) {
+export async function create(name: string, root: string): Promise<string> {
   const rootDir = path.join(root || process.cwd(), 'migrations')
   const templatepath = path.join(__dirname, '../template.ts')
   const filename = moment().format('YYYYMMDDHHmmss') + '-' + name + '.ts'

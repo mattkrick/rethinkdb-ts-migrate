@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows conventions [outlined here](http://keepachangelog.com/).
 
+## 0.3.2 - 04-Jan-2022
+
+### Fixed
+
+- Security patches
+
 ## 0.3.1 - 04-Jan-2022
 
 ### Fixed

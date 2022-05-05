@@ -1,9 +1,9 @@
-import * as path from 'path'
 import chalk from 'chalk'
-import nconf from 'nconf'
 import {promises as fs} from 'fs'
-import {r, R} from 'rethinkdb-ts'
 import moment from 'moment'
+import nconf from 'nconf'
+import * as path from 'path'
+import {r, R} from 'rethinkdb-ts'
 
 require('sucrase/register')
 
@@ -154,7 +154,7 @@ export async function up(params: Params): Promise<void> {
     try {
       await migration.code.up(r)
     } catch (e) {
-      logError(`Migration failed: ${name}`, e)
+      logError(`Migration failed: ${name}`, e as any)
       await r.getPoolMaster()?.drain()
       return
     }
@@ -191,7 +191,7 @@ export async function down(params: Params): Promise<void> {
     try {
       await migration.code.down(r)
     } catch (e) {
-      logError(`Migration failed: ${name}`, e)
+      logError(`Migration failed: ${name}`, e as any)
       await r.getPoolMaster()?.drain()
       return
     }

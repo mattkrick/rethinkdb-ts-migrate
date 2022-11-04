@@ -1535,10 +1535,9 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-nconf@1.0.0-beta.0:
+"nconf@https://github.com/indexzero/nconf/tarball/ce212b2f1dbf96cee001b5f621979c564638f0e7":
   version "1.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/nconf/-/nconf-1.0.0-beta.0.tgz#366efb257679fe7e9d9a320c2e745402ea7c7276"
-  integrity sha512-JHJxgSeviqmY3UXtbP4imM+eYwkQ7xLNhAlebXDp2Ru82RHPTcRykmJhDaAAc2dOZtAD+IaxAQk8xE/vXxxDUw==
+  resolved "https://github.com/indexzero/nconf/tarball/ce212b2f1dbf96cee001b5f621979c564638f0e7#c6faa110a2c3a198f1f889f02340e7a90db2d689"
   dependencies:
     ini "^2.0.0"
     yargs "^17.0.0"

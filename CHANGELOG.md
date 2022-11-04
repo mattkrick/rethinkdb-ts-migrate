@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows conventions [outlined here](http://keepachangelog.com/).
 
-## 0.3.4 - 04-Nov-2022
+## 0.3.5 - 04-Nov-2022
 
 - Bump nconf to not use dynamic requires
 

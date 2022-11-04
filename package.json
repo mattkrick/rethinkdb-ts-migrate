@@ -1,6 +1,6 @@
 {
   "name": "rethinkdb-ts-migrate",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A migration tool for RethinkDB-ts",
   "main": "lib/migrate",
   "scripts": {
@@ -27,7 +27,7 @@
     "chalk": "^4.1.0",
     "meow": "^10.1.2",
     "moment": "^2.29.3",
-    "nconf": "^0.12.0",
+    "nconf": "1.0.0-beta.0",
     "rethinkdb-ts": "^2.4.5",
     "sucrase": "^3.21.0",
     "tslib": "^2.4.0"
